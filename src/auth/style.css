@@ -39,3 +39,27 @@
   align-items: right;
   font-size: 20px;
 }
+
+h1.register_heading {
+  text-align: center;
+}
+
+.button_div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form_center {
+  text-align: center;
+}
+
+a.link_reg {
+  font-size: 20px;
+  margin-top: 25px;
+}
+
+.center_content {
+  text-align: center;
+  margin-top: 200px;
+}

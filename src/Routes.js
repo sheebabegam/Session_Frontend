@@ -1,14 +1,14 @@
 import { useContext } from "react";
 import { Routes, Route, Outlet, Navigate } from "react-router-dom";
-import Login from "./Login";
-import Register from "./Register";
-import Home from "./Home";
+import Login from "./auth/Login";
+import Register from "./auth/Register";
+import Home from "./auth/Home";
 
-import { UserContext } from "./Context";
+import { UserContext } from "./auth/Context";
 
 const ProtectedRoute = ({ userData, redirectPath = "" }) => {
-  if (userData) {
-    return <>Being refresh...</>;
+  if (!userData) {
+    return <>Go to Login...</>;
   }
   return <Outlet />;
 };
@@ -18,13 +18,13 @@ function RoutesComp() {
   return (
     <>
       <Routes>
-        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
 
         <Route
           element={<ProtectedRoute userData={userEmail} redirectPath={""} />}
         >
-          <Route path="/home" element={<Home />} />
+          <Route path="/home" element={<Home />} exact />
         </Route>
       </Routes>
     </>

@@ -36,7 +36,7 @@ const Register = () => {
         .post("http://localhost:2000/api/register", data)
         .then((res) => {
           toast.success("User register successfully!");
-          navigate("/login");
+          navigate("/");
         })
         .catch((err) => {
           // toast.error(err.response.data);
@@ -133,7 +133,7 @@ const Register = () => {
         <br />
         <br />
         <br />
-        <div>
+        <div className="button_div">
           <button
             type="submit"
             className="submit_btn"

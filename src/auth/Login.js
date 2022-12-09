@@ -21,7 +21,7 @@ function Login() {
     event.preventDefault();
 
     try {
-      const res = await fetch("/api/login", {
+      const res = await fetch("http://localhost:2000/api/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -38,7 +38,7 @@ function Login() {
 
       await setUserEmail(data?.userSession?.email);
       await setUserId(data?.userSession?.user_id);
-      console.log({ data });
+      console.log("Login Response", { data });
 
       if (data.msg == "You have logged in successfully") {
         navigate("/home");
@@ -59,39 +59,43 @@ function Login() {
 
   return (
     <>
+      <h1 className="register_heading">Login</h1>
       <form onSubmit={handleSubmit}>
-        <div className="input-icons">
-          <i class="fa fa-user icon"></i>
-          <span className="line_vr"></span>
+        <div className="form_center">
           <input
+            className="input_box"
             type="email"
             placeholder="Email"
             value={values.email}
             onChange={handleChange("email")}
           />
-        </div>
-        <br />
 
-        <div className="input-icons">
-          <i class="fa fa-mobile icon" aria-hidden="true"></i>
-          <span className="line_vr"></span>
+          <br />
+          <br />
+
           <input
-            className="input_with_icon"
+            className="input_box"
             type="password"
             placeholder="Password"
             value={values.password}
             onChange={handleChange("password")}
           />
         </div>
-        <br />
 
-        <button
-          className="login_btn"
-          type="submit"
-          // onClick={setOTPChange}
-        >
-          Submit
-        </button>
+        <br />
+        <div className="button_div">
+          <button
+            className="submit_btn"
+            type="submit"
+            // onClick={setOTPChange}
+          >
+            Submit
+          </button>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+          <RouterLink to="/register" className="link_reg">
+            Register
+          </RouterLink>
+        </div>
       </form>
     </>
   );

@@ -1,12 +1,8 @@
 import React, { useState, useEffect } from "react";
-import Register from "./auth/Register";
-import Login from "./auth/Login";
-import RoutesComp from "./auth/Protected";
-import Home from "./auth/Home";
-import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import { UserContextProvider } from "./auth/Context";
+import Routes from "./Routes";
 
 function App() {
   const [loading, setLoading] = useState(false);
@@ -30,7 +26,8 @@ function App() {
       try {
         setLoading(true);
         const res = await fetch("/api/isAuth");
-        if (!res.ok) {
+        console.log("Auth response is", res);
+        if (res.ok) {
           localStorage.clear();
           navigate("/");
           return setLoading(false);
@@ -51,7 +48,8 @@ function App() {
   return (
     <div className="App">
       <UserContextProvider value={ContextValues}>
-        <RoutesComp />
+        {/* <RoutesComp /> */}
+        {loading ? <>loading...</> : <Routes />}
       </UserContextProvider>
     </div>
   );
